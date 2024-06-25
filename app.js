@@ -23,6 +23,7 @@ app.use(cors(corsOptions));
 // Import the routes
 const milk = require('./router/milk');
 const cows = require('./router/cows');
+const treats = require('./router/treats');
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -39,15 +40,20 @@ connectToMongo().catch(err => {
 //   next();
 // }, cows);
 
-app.use('/cows', (req, res, next) => {
+app.use('/api/cows', (req, res, next) => {
   req.db = getDb();
   next();
 }, cows);
 
-app.use('/milk', (req, res, next) => {
+app.use('/api/milk', (req, res, next) => {
   req.db = getDb();
   next();
 }, milk);
+
+app.use('/api/treatments', (req, res, next) => {
+  req.db = getDb();
+  next();
+}, treats);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
