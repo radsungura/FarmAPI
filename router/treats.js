@@ -9,9 +9,9 @@ const app = express();
 router.get('/get', async (req, res) => {
   const db = req.db;
   const collection = db.collection('treatments');
-  const milk = await collection.find({}).toArray();
-  res.send(milk);
-  console.log(milk);
+  const treat = await collection.find({}).toArray();
+  res.send(treat);
+  // console.log(treat);
 });
 
 // Find one document by ID
@@ -25,7 +25,7 @@ router.get('/get/:id', async (req, res) => {
 // Example POST route
 router.post('/add', async (req, res) => {
   const db = req.db;
-  console.log(req);
+  // console.log("add data", req.body);
   const collection = db.collection('treatments');
   const result = await collection.insertOne(req.body);
   res.json(result);
@@ -40,7 +40,7 @@ router.put('/set/:id', async (req, res) => {
     { $set: req.body }
   );
   res.json(result);
-  console.log("set data", req.body);
+  console.log("set data", req.body, req.params.id);
 
 });
 
@@ -50,7 +50,7 @@ router.delete('/delete/:id', async (req, res) => {
   const collection = db.collection('treatments');
   const result = await collection.deleteOne({ _id: new ObjectId(req.params.id) });
   res.json(result);
-  console.log("deleted successful");
+  // console.log("deleted successful", req.body);
 });
 
 module.exports = router;

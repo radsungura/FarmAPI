@@ -7,18 +7,20 @@ const port = process.env.PORT || 3000;
 
 
 
-app.use(cors({
-  origin: /http:\/\/localhost/
-}));
+// app.use(cors({
+//   origin: /http:\/\/rad-pc/
+// }));
 
 // Enable CORS for specific origins
 const corsOptions = {
-  origin: 'http://localhost:4200', // Replace with your allowed origin
+  origin: 'http://localhost:4200', //  Allowed origin
   optionsSuccessStatus: 200 // For legacy browser support
 };
-// default but not secure, all origin app.use(cors()); 
-
 app.use(cors(corsOptions));
+// default but not secure, all origin 
+// app.use(cors()); 
+
+
 
 // Import the routes
 const milk = require('./router/milk');
@@ -56,5 +58,5 @@ app.use('/api/treatments', (req, res, next) => {
 }, treats);
 
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on http://192.168.0.100:${port}`);
   });

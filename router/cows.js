@@ -43,7 +43,7 @@ router.put('/set/:id', async (req, res) => {
     { _id: new ObjectId(req.params.id) },
     { $set: req.body }
   );
-  res.json(result);
+  res.status(200).json(result);
   console.log("set data", req.body);
 
 });
