@@ -1,3 +1,29 @@
+const db = req.db;
+  const Users = db.collection('Users');
+  
+  try {
+    // Rechercher l'utilisateur dans la base de données
+    const user = await Users.findOne({ username });
+    if (!user) {
+      return res.status(400).json({ message: 'Invalid credentials' });
+    }
+
+    // Vérifier le mot de passe
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: 'Invalid credentials' });
+    }
+
+    // Générer un token JWT
+    const token = jwt.sign({ id: user._id }, 'your_jwt_secret', { expiresIn: '1h' });
+
+    return res.json({ token });
+  } catch (error) {
+    return res.status(500).json({ message: 'Server error' });
+  }
+
+
+
 const { MongoClient } = require('mongodb');
 const cows = [
 //     { number: "000", color: "blanc", name: "Bitaho", dad: "Rwabigoro", mum: "Mariza", race: "Frisone", mixLevel: 2, originFarm: "Kiryama", birth: "2000-02-01", fWeaning: "2001-02-01", sexe: "Femelle", fSoiled: "2004-02-01", fCalving: "2004-11-01" },

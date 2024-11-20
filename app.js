@@ -16,7 +16,7 @@ const corsOptions = {
   origin: 'http://localhost:4200', //  Allowed origin
   optionsSuccessStatus: 200 // For legacy browser support
 };
-app.use(cors(corsOptions));
+app.use(cors());
 // default but not secure, all origin 
 // app.use(cors()); 
 
@@ -26,6 +26,7 @@ app.use(cors(corsOptions));
 const milk = require('./router/milk');
 const cows = require('./router/cows');
 const treats = require('./router/treats');
+const users = require('./router/users');
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -57,6 +58,11 @@ app.use('/api/treatments', (req, res, next) => {
   next();
 }, treats);
 
-app.listen(port, () => {
+app.use('/api/users', (req, res, next) => {
+  req.db = getDb();
+  next();
+}, users);
+
+app.listen(port, '0.0.0.0', () => {
   console.log(`Server is running on http://192.168.0.100:${port}`);
   });
