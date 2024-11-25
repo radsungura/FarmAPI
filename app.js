@@ -27,6 +27,7 @@ const milk = require('./router/milk');
 const cows = require('./router/cows');
 const treats = require('./router/treats');
 const users = require('./router/users');
+const prod = require('./router/production');
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -62,6 +63,12 @@ app.use('/api/users', (req, res, next) => {
   req.db = getDb();
   next();
 }, users);
+
+// use production route
+app.use('/api/production', (req, res, next) => {
+  req.db = getDb();
+  next();
+}, prod);
 
 app.listen(port, '0.0.0.0', () => {
   console.log(`Server is running on http://192.168.0.100:${port}`);
