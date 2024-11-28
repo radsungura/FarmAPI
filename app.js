@@ -27,7 +27,8 @@ const milk = require('./router/milk');
 const cows = require('./router/cows');
 const treats = require('./router/treats');
 const users = require('./router/users');
-const prod = require('./router/production');
+const prod = require('./router/productions');
+const wean = require('./router/weans');
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -69,6 +70,12 @@ app.use('/api/production', (req, res, next) => {
   req.db = getDb();
   next();
 }, prod);
+
+// use wean route
+app.use('/api/weans', (req, res, next) => {
+  req.db = getDb();
+  next();
+}, wean);
 
 app.listen(port, '0.0.0.0', () => {
   console.log(`Server is running on http://192.168.0.100:${port}`);
