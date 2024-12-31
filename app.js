@@ -1,11 +1,8 @@
-require('dotenv').config();
 const cors = require('cors');
 const express = require("express");
 const app = express();
 const { connectToMongo, getDb } = require('./db');
 const port = process.env.PORT || 3000;
-
-
 
 // app.use(cors({
 //   origin: /http:\/\/rad-pc/
@@ -77,6 +74,6 @@ app.use('/api/weans', (req, res, next) => {
   next();
 }, wean);
 
-app.listen(port, '0.0.0.0', () => {
-  console.log(`Server is running on http://192.168.0.100:${port}`);
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
   });

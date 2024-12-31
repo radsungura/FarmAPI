@@ -15,6 +15,7 @@ const getDb = () => {
   if (!db) {
     throw new Error('Database not connected!');
   }
+    console.log('Database connected!');
   return db;
 };
 
