@@ -14,10 +14,9 @@ const port = process.env.PORT || 3000;
   //   optionsSuccessStatus: 200 // For legacy browser support
   // };
   // app.use(cors(corsOptions));
+
 // default but not secure, all origin 
 app.use(cors()); 
-
-
 
 // Import the routes
 const milk = require('./router/milk');
@@ -73,7 +72,6 @@ app.use('/api/weans', (req, res, next) => {
   req.db = getDb();
   next();
 }, wean);
-
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
   });
