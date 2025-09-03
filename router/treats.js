@@ -4,7 +4,7 @@ const { MongoClient, ObjectId } = require('mongodb');
 
 const router = express.Router();
 const app = express();
- 
+
 // Example GET route
 router.get('/get', async (req, res) => {
   const db = req.db;

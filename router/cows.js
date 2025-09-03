@@ -18,10 +18,10 @@ router.get("/get/:id", async (req, res) => {
   const db = req.db;
   const collection = db.collection('cows');
   const cow = await collection.findOne({ _id: new ObjectId(req.params.id) });
-    if (!cow) {
-      res.status(404).send({ message: "No data match your research" });
-    }
-     res.status(200).json(cow);
+  if (!cow) {
+    res.status(404).send({ message: "No data match your research" });
+  }
+  res.status(200).json(cow);
 })
 
 // Add a new cow

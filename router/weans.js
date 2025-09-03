@@ -13,10 +13,10 @@ router.get("/get/:id", async (req, res) => {
   const db = req.db;
   const collection = db.collection('weans');
   const soil = await collection.findOne({ _id: new ObjectId(req.params.id) });
-    if (!soil) {
-      res.status(404).send({ message: "No data match your research" });
-    }
-     res.status(200).json(soil);
+  if (!soil) {
+    res.status(404).send({ message: "No data match your research" });
+  }
+  res.status(200).json(soil);
 })
 
 // Add a new cow

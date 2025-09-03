@@ -16,8 +16,8 @@ router.post('/login', async (req, res) => {
   if (!user) {
     return res.status(400).json({ message: 'Invalid credentials' });
   } else {
-      // Vérifier le mot de passe
-      // const isMatch = await bcrypt.compare(password, user.password);
+    // Vérifier le mot de passe
+    // const isMatch = await bcrypt.compare(password, user.password);
     try {
       if (user.password != password) {
         return res.status(400).json({ message: 'Invalid credentials' });
@@ -27,7 +27,7 @@ router.post('/login', async (req, res) => {
         user.token = token
         return res.json({ user });
       }
-    }catch (error) {
+    } catch (error) {
       return res.status(500).json({ message: 'Server error', Error: error });
     }
   }
@@ -44,10 +44,10 @@ router.get("/get/:id", async (req, res) => {
   const db = req.db;
   const collection = db.collection('Users');
   const cow = await collection.findOne({ _id: new ObjectId(req.params.id) });
-    if (!cow) {
-      res.status(404).send({ message: "No data match your research" });
-    }
-     res.status(200).json(cow);
+  if (!cow) {
+    res.status(404).send({ message: "No data match your research" });
+  }
+  res.status(200).json(cow);
 })
 
 // Add a new cow

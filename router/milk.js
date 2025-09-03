@@ -4,7 +4,7 @@ const { MongoClient, ObjectId } = require('mongodb');
 const express = require("express");
 const router = express.Router();
 const app = express();
- 
+
 // Example GET route
 router.get('/get', async (req, res) => {
   const db = req.db;
@@ -19,7 +19,7 @@ router.get('/get', async (req, res) => {
 router.get('/get/:id', async (req, res) => {
   const db = req.db;
   const collection = db.collection('milk');
-  console.log("id", typeof(req.params.id));
+  console.log("id", typeof (req.params.id));
   const milk = await collection.findOne({ _id: new ObjectId(req.params.id) });
   console.log("id", milk);
   // res.send(milk);

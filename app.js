@@ -16,7 +16,14 @@ const port = process.env.PORT || 3000;
   // app.use(cors(corsOptions));
 
 // default but not secure, all origin 
-app.use(cors()); 
+// app.use(cors());
+// secure way
+app.use(cors({
+  origin: `http://localhost:${port}`,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
+
 
 // Import the routes
 const milk = require('./router/milk');
