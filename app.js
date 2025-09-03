@@ -19,7 +19,7 @@ const port = process.env.PORT || 3000;
 // app.use(cors());
 // secure way
 app.use(cors({
-  origin: `http://localhost:${port}`,
+  origin: 'http://localhost:4200',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
